@@ -9,13 +9,12 @@ import (
 var ErrInvalidString = errors.New("invalid string")
 
 func Unpack(str string) (string, error) {
-	runes := []rune(str)
 	var result []rune
 	var lastRune rune
 	var isDigit bool
 	var nextDefault bool
 
-	for _, r := range runes {
+	for _, r := range str {
 		switch {
 		case unicode.IsDigit(r) && !nextDefault:
 			if isDigit {
