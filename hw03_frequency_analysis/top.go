@@ -11,7 +11,7 @@ type Words struct {
 	count int
 }
 
-var reg = regexp.MustCompile(`(-{2,})|([а-яА-Я]+-?[a-яА-Я]?)`)
+var reg = regexp.MustCompile(`(-{2,})|([а-яА-Яa-zA-Z]+-?[a-яА-Яa-zA-Z]?)`)
 
 func Top10(text string) []string {
 	var result []string
