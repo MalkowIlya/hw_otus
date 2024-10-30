@@ -14,9 +14,8 @@ type Words struct {
 var reg = regexp.MustCompile(`(-{2,})|([а-яА-Яa-zA-Z]+-?[a-яА-Яa-zA-Z]?)`)
 
 func Top10(text string) []string {
-	var result []string
+	result := make([]string, 0, 10)
 	wordList := strings.Fields(text)
-	words := make([]Words, 0, len(wordList))
 	wordMap := make(map[string]int, len(wordList))
 
 	for _, word := range wordList {
@@ -24,6 +23,7 @@ func Top10(text string) []string {
 			wordMap[strings.ToLower(word)]++
 		}
 	}
+	words := make([]Words, 0, len(wordMap))
 
 	for word, count := range wordMap {
 		words = append(words, Words{word: word, count: count})
@@ -39,12 +39,13 @@ func Top10(text string) []string {
 		return false
 	})
 
-	if len(words) >= 10 {
-		words = words[:10]
-
-		for _, word := range words {
-			result = append(result, word.word)
-		}
+	splice := len(words)
+	if splice > 10 {
+		splice = 10
+	}
+	words = words[:splice]
+	for _, word := range words {
+		result = append(result, word.word)
 	}
 
 	return result
