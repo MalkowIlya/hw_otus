@@ -17,6 +17,9 @@ linters-settings:
           - errors
           - testing
           - github.com/stretchr/testify
+          - math/rand
+          - strconv
+          - sync
 
 issues:
   exclude-rules:
